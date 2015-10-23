@@ -10,6 +10,7 @@ our %SPEC;
 
 $SPEC{get_usd_idr_rate_from_klikbca} = {
     v => 1.1,
+    summary => 'Get USD-to-IDR rates from KlikBCA',
 };
 sub get_usd_idr_rate_from_klikbca {
     require Finance::Currency::Convert::KlikBCA;
