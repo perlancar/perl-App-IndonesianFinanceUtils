@@ -1,0 +1,32 @@
+#!perl
+
+use 5.010;
+use strict;
+use warnings;
+
+use Perinci::CmdLine::Any;
+
+our %SPEC;
+
+$SPEC{get_usd_idr_rate_from_klikbca} = {
+    v => 1.1,
+};
+sub get_usd_idr_rate_from_klikbca {
+    require Finance::Currency::Convert::KlikBCA;
+
+    my %args = @_;
+
+    my $res = Finance::Currency::Convert::KlikBCA::get_currencies();
+    return $res unless $res->[0] == 200;
+
+    [200, "OK", $res->[2]{currencies}{USD}, {
+        'func.update_date'=>$res->[2]{update_date},
+    }];
+}
+
+Perinci::CmdLine::Any->new(
+    url => '/main/get_usd_idr_rate_from_klikbca',
+)->run;
+
+# ABSTRACT:
+# PODNAME:
