@@ -1,5 +1,10 @@
 Revision history for App-IndonesianFinanceUtils
 
+0.06    2016-07-22 (PERLANCAR)
+
+	- Add utility: list-currency-exchange-rates-from-klikbca.
+
+
 0.05    2016-01-18 (PERLANCAR)
 
         - No functional changes.
