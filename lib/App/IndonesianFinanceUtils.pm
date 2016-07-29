@@ -1,7 +1,5 @@
 package App::IndonesianFinanceUtils;
 
-use 5.010001;
-
 # DATE
 # VERSION
 
