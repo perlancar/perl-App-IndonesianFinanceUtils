@@ -1,0 +1,33 @@
+#!perl
+
+use 5.010001;
+use strict;
+use warnings;
+
+use Perinci::CmdLine::Any;
+
+our %SPEC;
+
+$SPEC{get_usd_idr_rate_from_gmc} = {
+    v => 1.1,
+    summary => 'Get USD-to-IDR rates from GMC',
+};
+sub get_usd_idr_rate_from_gmc {
+    require Finance::Currency::Convert::GMC;
+
+    my %args = @_;
+
+    my $res = Finance::Currency::Convert::GMC::get_currencies();
+    return $res unless $res->[0] == 200;
+
+    [200, "OK", $res->[2]{currencies}{USD}, {
+        'func.update_date'=>$res->[2]{update_date},
+    }];
+}
+
+Perinci::CmdLine::Any->new(
+    url => '/main/get_usd_idr_rate_from_gmc',
+)->run;
+
+# ABSTRACT:
+# PODNAME:

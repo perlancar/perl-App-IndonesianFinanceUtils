@@ -1,0 +1,41 @@
+#!perl
+
+use 5.010;
+use strict;
+use warnings;
+
+use Perinci::CmdLine::Any;
+
+our %SPEC;
+
+$SPEC{list_currency_exchange_rates_from_gmc} = {
+    v => 1.1,
+    summary => 'List currency exchange rates from GMC',
+};
+sub list_currency_exchange_rates_from_gmc {
+    require Finance::Currency::Convert::GMC;
+
+    my %args = @_;
+
+    my $res = Finance::Currency::Convert::GMC::get_currencies();
+    return $res unless $res->[0] == 200;
+
+    my @rows;
+    my $currencies = $res->[2]{currencies};
+    for my $cur (sort keys %$currencies) {
+        my $row = $currencies->{$cur};
+        $row->{currency} = $cur;
+        push @rows, $row;
+    }
+
+    [200, "OK", \@rows, {
+        'table.fields' => [qw/currency buy sell/],
+    }];
+}
+
+Perinci::CmdLine::Any->new(
+    url => '/main/list_currency_exchange_rates_from_gmc',
+)->run;
+
+# ABSTRACT:
+# PODNAME:
