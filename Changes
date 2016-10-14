@@ -4,7 +4,7 @@ Revision history for App-IndonesianFinanceUtils
 
 	- Add utilities: get-usd-idr-rates-from-gmc,
 	  list-currency-exchange-rates-from-gmc,
-	  convert-currency-using-gmt.
+	  convert-currency-using-gmc.
 
 	- Make main module contain no code.
 
