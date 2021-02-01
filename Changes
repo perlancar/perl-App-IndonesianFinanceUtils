@@ -1,3 +1,12 @@
+0.080   2021-02-01  Released-By: PERLANCAR; Urgency: medium
+
+        - Add script: get-ksei-sec-ownership-url.
+
+	- Rename scripts: convert-currency-using-{klik,}bca,
+	  get-usd-idr-rate-from-{klik,}bca,
+	  list-currency-exchange-rates-from-{klik,}bca.
+
+
 0.07    2016-10-14  Released-By: PERLANCAR
 
 	- Add utilities: get-usd-idr-rates-from-gmc,
