@@ -8,16 +8,16 @@ use Perinci::CmdLine::Any;
 
 our %SPEC;
 
-$SPEC{get_usd_idr_rate_from_klikbca} = {
+$SPEC{get_usd_idr_rate_from_bca} = {
     v => 1.1,
-    summary => 'Get USD-to-IDR rates from KlikBCA',
+    summary => 'Get USD-to-IDR rates from BCA',
 };
-sub get_usd_idr_rate_from_klikbca {
-    require Finance::Currency::Convert::KlikBCA;
+sub get_usd_idr_rate_from_bca {
+    require Finance::Currency::Convert::BCA;
 
     my %args = @_;
 
-    my $res = Finance::Currency::Convert::KlikBCA::get_currencies();
+    my $res = Finance::Currency::Convert::BCA::get_currencies();
     return $res unless $res->[0] == 200;
 
     [200, "OK", $res->[2]{currencies}{USD}, {
@@ -26,7 +26,7 @@ sub get_usd_idr_rate_from_klikbca {
 }
 
 Perinci::CmdLine::Any->new(
-    url => '/main/get_usd_idr_rate_from_klikbca',
+    url => '/main/get_usd_idr_rate_from_bca',
 )->run;
 
 # ABSTRACT:

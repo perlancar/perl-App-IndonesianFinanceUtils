@@ -8,16 +8,16 @@ use Perinci::CmdLine::Any;
 
 our %SPEC;
 
-$SPEC{list_currency_exchange_rates_from_klikbca} = {
+$SPEC{list_currency_exchange_rates_from_bca} = {
     v => 1.1,
-    summary => 'List currency exchange rates from KlikBCA',
+    summary => 'List currency exchange rates from BCA',
 };
-sub list_currency_exchange_rates_from_klikbca {
-    require Finance::Currency::Convert::KlikBCA;
+sub list_currency_exchange_rates_from_bca {
+    require Finance::Currency::Convert::BCA;
 
     my %args = @_;
 
-    my $res = Finance::Currency::Convert::KlikBCA::get_currencies();
+    my $res = Finance::Currency::Convert::BCA::get_currencies();
     return $res unless $res->[0] == 200;
 
     my @rows;
@@ -34,7 +34,7 @@ sub list_currency_exchange_rates_from_klikbca {
 }
 
 Perinci::CmdLine::Any->new(
-    url => '/main/list_currency_exchange_rates_from_klikbca',
+    url => '/main/list_currency_exchange_rates_from_bca',
 )->run;
 
 # ABSTRACT:
